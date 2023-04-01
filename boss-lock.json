@@ -1,6 +1,6 @@
 {
-	"hash": "d41d8cd98f00b204e9800998ecf8427e",
-	"updated": "2023-04-01T12:22:00.485412+01:00",
+	"hash": "",
+	"updated": "2023-04-01T14:46:02.789651+01:00",
 	"installedModules": {
 		"github.com/hashload/horse": {
 			"name": "horse",
