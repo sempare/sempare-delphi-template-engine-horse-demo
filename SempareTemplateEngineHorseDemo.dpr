@@ -2,20 +2,19 @@ program SempareTemplateEngineHorseDemo;
 
 {$APPTYPE CONSOLE}
 {$R *.res}
-{$R 'template.res' 'template.rc'}
 
 uses
   System.SysUtils,
   System.Classes,
+  Sempare.Template,
   Horse,
-  DynForm in 'DynForm.pas',
-  TemplateRegistry in 'TemplateRegistry.pas';
+  DynForm in 'DynForm.pas';
 
 begin
   THorse.Get('/',
     procedure(Req: THorseRequest; Res: THorseResponse)
     begin
-      Res.Send(TTemplateRegistry.Instance.ProcessTemplate('index'));
+      Res.Send(TTemplateRegistry.Instance.Eval('index'));
     end);
 
   THorse.Get('/form',
@@ -32,7 +31,7 @@ begin
         TField.create('Email', 'email', 'TEmail') //
         ];
       LTemplateData.Buttons := [TButton.create('Submit', 'submit')];
-      Res.Send(TTemplateRegistry.Instance.ProcessTemplate('dynform', LTemplateData));
+      Res.Send(TTemplateRegistry.Instance.Eval('dynform', LTemplateData));
 
     end);
 
@@ -44,13 +43,13 @@ begin
       LFormData.firstname := Req.ContentFields['firstname'];
       LFormData.lastname := Req.ContentFields['lastname'];
       LFormData.email := Req.ContentFields['email'];
-      Res.Send(TTemplateRegistry.Instance.ProcessTemplate('submitted', LFormData));
+      Res.Send(TTemplateRegistry.Instance.Eval('submitted', LFormData));
     end);
 
   THorse.All('/*',
     procedure(Req: THorseRequest; Res: THorseResponse)
     begin
-      Res.Send(TTemplateRegistry.Instance.ProcessTemplate('error404'));
+      Res.Send(TTemplateRegistry.Instance.Eval('error404'));
     end);
 
   THorse.Listen(8080);

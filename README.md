@@ -1,7 +1,5 @@
 # Sempare Template Engine demo using Horse
 
-NOTE: using BOSS won't work to pull in the Sempare Template Engine as it depends on the latest pre-release version which is not released yet. BOSS can't detect it (or I can't see how to map onto it yet)
-
 ## Setup
 
 - Ensure you have the BOSS dependency manager
@@ -28,6 +26,25 @@ NOTE: using BOSS won't work to pull in the Sempare Template Engine as it depends
 
 This demo depends on the following packages:
 - horse
-- sempare-delphi-template-engine (v1.7.0 - dev branch) (not released yet 1 Apr 2023)
+- sempare-delphi-template-engine
 
+## What you need to know
 
+Open the project SempareTemplateEngineHorseDemo.dproj
+
+Note that the Sempare.Template unit is all that is required.
+
+TTemplateRegistry is a helper utility that allows you to chose between loading templates from file, or from the registry.
+
+```
+begin
+  TTemplateRegistry.Instance.LoadStrategy := tlsLoadFileElseResource;
+  TTemplateRegistry.Instance.RefreshIntervalS := 5;
+  TTemplateRegistry.Instance.AutomaticRefresh := true;
+
+  THorse.Get('/',
+    procedure(Req: THorseRequest; Res: THorseResponse)
+    begin
+      Res.Send(TTemplateRegistry.Instance.Eval('index'));
+    end);
+```

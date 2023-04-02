@@ -84,7 +84,7 @@
         <DCC_K>false</DCC_K>
         <DCC_Namespace>System;Xml;Data;Datasnap;Web;Soap;$(DCC_Namespace)</DCC_Namespace>
         <SanitizedProjectName>SempareTemplateEngineHorseDemo</SanitizedProjectName>
-        <DCC_UnitSearchPath>D:\Sempare\vm-mount\sempare-delphi-template-engine\src;$(DCC_UnitSearchPath);modules\.dcp;modules\.dcu;modules;modules\horse\src;modules\sempare-delphi-template-engine\src</DCC_UnitSearchPath>
+        <DCC_UnitSearchPath>D:\Sempare\vm-mount\sempare-delphi-template-engine\src;modules\.dcp;modules\.dcu;modules;modules\horse\src;modules\sempare-delphi-template-engine\src;$(DCC_UnitSearchPath)</DCC_UnitSearchPath>
         <VerInfo_Locale>2057</VerInfo_Locale>
         <VerInfo_Keys>CompanyName=;FileDescription=$(MSBuildProjectName);FileVersion=1.0.0.0;InternalName=;LegalCopyright=;LegalTrademarks=;OriginalFilename=;ProgramID=com.embarcadero.$(MSBuildProjectName);ProductName=$(MSBuildProjectName);ProductVersion=1.0.0.0;Comments=</VerInfo_Keys>
     </PropertyGroup>
@@ -185,17 +185,16 @@
         <DelphiCompile Include="$(MainSource)">
             <MainSource>MainSource</MainSource>
         </DelphiCompile>
-        <RcCompile Include="template.rc">
-            <Form>template.res</Form>
-        </RcCompile>
         <DCCReference Include="DynForm.pas"/>
-        <DCCReference Include="TemplateRegistry.pas"/>
+        <RcCompile Include="SempareTemplateEngineHorseDemo.rc">
+            <Form>SempareTemplateEngineHorseDemo.res</Form>
+        </RcCompile>
         <None Include="README.md"/>
-        <None Include="templates\404.tpl"/>
+        <None Include="templates\error404.tpl"/>
         <None Include="templates\dynform.tpl"/>
-        <None Include="templates\helper_template.tpl"/>
+        <None Include="templates\helper.tpl"/>
         <None Include="templates\index.tpl"/>
-        <None Include="templates\main_template.tpl"/>
+        <None Include="templates\template.tpl"/>
         <None Include="templates\submitted.tpl"/>
         <BuildConfiguration Include="Base">
             <Key>Base</Key>
