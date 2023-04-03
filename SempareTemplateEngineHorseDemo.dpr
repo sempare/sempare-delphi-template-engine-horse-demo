@@ -10,11 +10,36 @@ uses
   Horse,
   DynForm in 'DynForm.pas';
 
+type
+  TDemo = record
+    Name: string;
+    FrameworkUrl: string;
+    Url: string;
+    Current: Boolean;
+    constructor Create(const AName: String; const AFrameworkUrl, AUrl: string; const ACurrent: Boolean = false);
+  end;
+
+  { TDemo }
+
+constructor TDemo.Create(const AName, AFrameworkUrl, AUrl: string; const ACurrent: Boolean);
+begin
+  name := AName;
+  FrameworkUrl := AFrameworkUrl;
+  Url := AUrl;
+  Current := ACurrent;
+end;
+
 begin
   THorse.Get('/',
     procedure(Req: THorseRequest; Res: THorseResponse)
+    var
+      LDemos: TArray<TDemo>;
     begin
-      Res.Send(TTemplateRegistry.Instance.Eval('index'));
+      LDemos := [ //
+        TDemo.Create('Web Broker', 'https://docwiki.embarcadero.com/RADStudio/Alexandria/en/Creating_WebBroker_Applications', 'https://github.com/sempare/sempare-delphi-template-engine/tree/main/demo/WebBrokerStandalone'), //
+        TDemo.Create('Horse', 'https://github.com/HashLoad/horse', 'https://github.com/sempare/sempare-delphi-template-engine-horse-demo', true) //
+        ];
+      Res.Send(TTemplateRegistry.Instance.Eval('index', LDemos));
     end);
 
   THorse.Get('/form',
@@ -26,11 +51,11 @@ begin
       LTemplateData.FormName := 'userinfo';
       LTemplateData.FormAction := Req.PathInfo;
       LTemplateData.Fields := [ //
-        TField.create('FirstName', 'firstname'), //
-        TField.create('LastName', 'lastname'), //
-        TField.create('Email', 'email', 'TEmail') //
+        TField.Create('FirstName', 'firstname'), //
+        TField.Create('LastName', 'lastname'), //
+        TField.Create('Email', 'email', 'TEmail') //
         ];
-      LTemplateData.Buttons := [TButton.create('Submit', 'submit')];
+      LTemplateData.Buttons := [TButton.Create('Submit', 'submit')];
       Res.Send(TTemplateRegistry.Instance.Eval('dynform', LTemplateData));
 
     end);
