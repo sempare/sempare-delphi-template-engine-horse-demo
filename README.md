@@ -38,7 +38,7 @@ TTemplateRegistry is a helper utility that allows you to chose between loading t
 
 ```
 begin
-  TTemplateRegistry.Instance.LoadStrategy := tlsLoadFileElseResource;
+  TTemplateRegistry.Instance.LoadStrategy := [tlsLoadFile, tlsLoadResource];
   TTemplateRegistry.Instance.RefreshIntervalS := 5;
   TTemplateRegistry.Instance.AutomaticRefresh := true;
 
