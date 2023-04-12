@@ -7,6 +7,6 @@
 	"projects": [],
 	"dependencies": {
 		"github.com/hashload/horse": "^3.1.0",
-		"github.com/sempare/sempare-delphi-template-engine": "^v1.6.2"
+		"github.com/sempare/sempare-delphi-template-engine": "^v1.7.0"
 	}
 }

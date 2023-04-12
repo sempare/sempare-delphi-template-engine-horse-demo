@@ -12,8 +12,8 @@
 		},
 		"github.com/sempare/sempare-delphi-template-engine": {
 			"name": "sempare-delphi-template-engine",
-			"version": "v1.6.2",
-			"hash": "8bc3f406ed2ebc6eabef16ef9b6ebf16",
+			"version": "v1.7.0",
+			"hash": "93997bd51e789f4ecc405c100bbc7775",
 			"artifacts": {},
 			"failed": false,
 			"changed": false
