@@ -1,12 +1,12 @@
 {
 	"name": "sempare-delphi-template-engine-horse-demo",
 	"description": "Horse Demo using the Sempare Template Engine",
-	"version": "1.0.0",
+	"version": "1.0.1",
 	"homepage": "https://github.com/sempare/sempare-delphi-template-engine-horse-demo",
 	"mainsrc": "./src",
 	"projects": [],
 	"dependencies": {
 		"github.com/hashload/horse": "^3.1.0",
-		"github.com/sempare/sempare-delphi-template-engine": "^v1.7.0"
+		"github.com/sempare/sempare-delphi-template-engine": "^v1.7.1"
 	}
 }
