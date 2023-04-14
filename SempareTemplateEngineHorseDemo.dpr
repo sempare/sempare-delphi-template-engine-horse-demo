@@ -67,10 +67,11 @@ begin
   writeln(Format('Connect your browser to http://localhost:%d', [LPort]));
   writeln('');
   writeln('Press Ctrl-C to terminate.');
+
   THorse.Get('/',
     procedure(Req: THorseRequest; Res: THorseResponse)
     begin
-      Res.Send(Template.ResolveWithContext('index', LDemos, Req));
+      Res.Send(Template.ResolveWithContext('index', Req, LDemos));
     end);
 
   THorse.Get('/form',
@@ -87,7 +88,7 @@ begin
         TField.Create('Email', 'email', 'TEmail') //
         ];
       LTemplateData.Buttons := [TButton.Create('Submit', 'submit')];
-      Res.Send(Template.ResolveWithContext('dynform', LTemplateData, Req));
+      Res.Send(Template.ResolveWithContext('dynform', Req, LTemplateData));
     end);
 
   THorse.Post('/form',
@@ -98,7 +99,7 @@ begin
       LFormData.firstname := Req.ContentFields['firstname'];
       LFormData.lastname := Req.ContentFields['lastname'];
       LFormData.email := Req.ContentFields['email'];
-      Res.Send(Template.ResolveWithContext('submitted', LFormData, Req));
+      Res.Send(Template.ResolveWithContext('submitted', Req, LFormData));
     end);
 
   THorse.All('/*',
