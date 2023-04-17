@@ -107,7 +107,10 @@ begin
     begin
       Res.Send(Template.ResolveWithContext('error404', Req));
     end);
-
-  THorse.Listen(LPort);
+  THorse.Listen(LPort, nil,
+    procedure
+    begin
+      TTemplateRegistry.Finalize;
+    end);
 
 end.
